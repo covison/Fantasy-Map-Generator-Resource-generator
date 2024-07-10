@@ -1,29 +1,33 @@
-# Fantasy Map Generator
+# Resource Generator
 
-Azgaar's _Fantasy Map Generator_ is a free web application that helps fantasy writers, game masters, and cartographers create and edit fantasy maps.
+This is an marker pack for Azgaar's _Fantasy Map Generator_
 
-Link: [azgaar.github.io/Fantasy-Map-Generator](https://azgaar.github.io/Fantasy-Map-Generator).
+Link to original project: [azgaar.github.io/Fantasy-Map-Generator](https://azgaar.github.io/Fantasy-Map-Generator).
 
-Refer to the [project wiki](https://github.com/Azgaar/Fantasy-Map-Generator/wiki) for guidance. The current progress is tracked in [Trello](https://trello.com/b/7x832DG4/fantasy-map-generator). Some details are covered in my old blog [_Fantasy Maps for fun and glory_](https://azgaar.wordpress.com).
+I have created a set of markers that represent resources on the map. For me to write a good state conflict story economy and resources are key behind motivation and making it believable so here it is:
+![Screenshot_1](https://github.com/Azgaar/Fantasy-Map-Generator/assets/174297022/f3f55045-ea8f-4af1-87a6-4306b2fb0d95)
+10k
+190
+![Screenshot_2](https://github.com/Azgaar/Fantasy-Map-Generator/assets/174297022/19bdb00a-6285-41fc-8428-bc6102042374)
+50k
+530
+![Screenshot_3](https://github.com/Azgaar/Fantasy-Map-Generator/assets/174297022/af269528-f267-4181-a0ca-e81bac96bced)
+100k
+860
 
-[![preview](https://github.com/Azgaar/Fantasy-Map-Generator/assets/26469650/9502eae9-92e0-4d0d-9f17-a2ba4a565c01)](https://github.com/Azgaar/Fantasy-Map-Generator/assets/26469650/11a42446-4bd5-4526-9cb1-3ef97c868992)
+Below every screenshot there is points number followed by the amount of markers.
 
-[![preview](https://github.com/Azgaar/Fantasy-Map-Generator/assets/26469650/e751a9e5-7986-4638-b8a9-362395ef7583)](https://github.com/Azgaar/Fantasy-Map-Generator/assets/26469650/e751a9e5-7986-4638-b8a9-362395ef7583)
-
-[![preview](https://github.com/Azgaar/Fantasy-Map-Generator/assets/26469650/b0d0efde-a0d1-4e80-8818-ea3dd83c2323)](https://github.com/Azgaar/Fantasy-Map-Generator/assets/26469650/b0d0efde-a0d1-4e80-8818-ea3dd83c2323)
-
-Join our [Discord server](https://discordapp.com/invite/X7E84HU) and [Reddit community](https://www.reddit.com/r/FantasyMapGenerator) to share your creations, discuss the Generator, suggest ideas and get the most recent updates.
-
-Contact me via [email](mailto:azgaar.fmg@yandex.com) if you have non-public suggestions. For bug reports please use [GitHub issues](https://github.com/Azgaar/Fantasy-Map-Generator/issues) or _#fmg-bugs_ channel on Discord. If you are facing performance issues, please read [the tips](https://github.com/Azgaar/Fantasy-Map-Generator/wiki/Tips#performance-tips).
-
-Pull requests are highly welcomed. The codebase is messy and requires re-design. I will appreciate if you start with minor changes. Check out the [data model](https://github.com/Azgaar/Fantasy-Map-Generator/wiki/Data-model) before contributing.
-
-You can support the project on [Patreon](https://www.patreon.com/azgaar).
-
-_Inspiration:_
-
-- Martin O'Leary's [_Generating fantasy maps_](https://mewo2.com/notes/terrain)
-
-- Amit Patel's [_Polygonal Map Generation for Games_](http://www-cs-students.stanford.edu/~amitp/game-programming/polygon-map-generation)
-
-- Scott Turner's [_Here Dragons Abound_](https://heredragonsabound.blogspot.com)
+Most markers are generated taking into account cells temperature, precipitation, biome, ect. so the placement of markers, for me is pretty reflective of reality.
+ 
+ To install, you'd have to open generator on your local host (I personally use OSpanel) then download the second zip file from the top (Fantasy-Map-Generator-master.zip), unzip it, put inside projects folder and start up your local host server and that's it. Create new map or open saved one, after doing so, go ahead and hide markers layer and show it again for size to be updated
+ 
+ This is very raw version, so no editor inside client, and when manipulating multiplier in client bugs out the generator, not sure how to fix it yet.
+ If you would like to change/add a resource open marker generator, in` GetDefaultConfig` function add your resource, then create new List[resource] function for generation configuration and Add[resource] function for description. If you would like to change the frequency of resource generation, find your resource in  `GetDefaultConfig`, and manipulate 'each' variable. the less the value the more resources will be generated
+ to adjust marker size and shape, go to layers.js, `GetPin`, choose your marker shape, below that you can find `DrawMarker` and adjust its size
+ 
+ In future I plan to:
+ 1. Make generation more precise 
+ 2. Add each states resources counter 
+ 3. Add state resources needs 
+ 4. Resources filter for visual cleanse 
+ 5. Resource editor in client
