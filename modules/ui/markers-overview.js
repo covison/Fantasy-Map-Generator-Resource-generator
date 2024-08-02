@@ -40,9 +40,9 @@ function overviewMarkers() {
   ];
 
   const types = [{type: "empty", icon: "❓"}, ...Markers.getConfig()];
-  types.forEach(({icon, type}) => {
+  types.forEach(({type}) => {
     const option = document.createElement("button");
-    option.textContent = `${icon} ${type}`;
+    option.textContent = `${type}`;
     markerTypeSelectMenu.appendChild(option);
 
     listeners.push(
@@ -70,7 +70,7 @@ function overviewMarkers() {
     const lines = pack.markers
       .map(({i, type, icon, pinned, lock}) => {
         return `<div class="states" data-i=${i} data-type="${type}">
-        <div data-tip="Marker icon and type" style="width:12em">${icon} ${type}</div>
+        <div data-tip="Marker icon and type" style="width:12em">${type}</div>
         <span style="padding-right:.1em" data-tip="Edit marker" class="icon-pencil"></span>
         <span style="padding-right:.1em" data-tip="Focus on marker position" class="icon-dot-circled pointer"></span>
         <span style="padding-right:.1em" data-tip="Pin marker (display only pinned markers)" class="icon-pin ${

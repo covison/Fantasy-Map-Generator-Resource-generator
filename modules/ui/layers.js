@@ -1525,6 +1525,10 @@ function toggleCompass(event) {
   if (!layerIsOn("toggleCompass")) {
     turnButtonOn("toggleCompass");
     $("#compass").fadeIn();
+    if (!compass.selectAll("*").size()) {
+      compass.append("use").attr("xlink:href", "#rose");
+      shiftCompass();
+    }
     if (event && isCtrlClick(event)) editStyle("compass");
   } else {
     if (event && isCtrlClick(event)) {
@@ -1668,7 +1672,7 @@ function drawMarkers() {
   markers.html(html.join(""));
 }
 
-const getPin = (shape = "bubble", fill = "#fff", stroke = "#000") => {
+const getPin = (shape = "circle", fill = "#fff", stroke = "#000") => {
   if (shape === "bubble")
     return `<path d="M6,19 l9,10 L24,19" fill="${stroke}" stroke="none" /><circle cx="15" cy="15" r="10" fill="${fill}" stroke="${stroke}"/>`;
   if (shape === "pin")
@@ -1692,14 +1696,14 @@ const getPin = (shape = "bubble", fill = "#fff", stroke = "#000") => {
 };
 
 function drawMarker(marker, rescale = 1) {
-  const {i, icon, x, y, dx = 50, dy = 50, px = 12, size = 30, pin, fill, stroke} = marker;
+  const {i, icon, x, y, dx = 50, dy = 50, px = 12, size = 5, pin, fill, stroke} = marker;
   const id = `marker${i}`;
   const zoomSize = rescale ? Math.max(rn(size / 5 + 24 / scale, 2), 1) : size;
   const viewX = rn(x - zoomSize / 2, 1);
   const viewY = rn(y - zoomSize, 1);
   const pinHTML = getPin(pin, fill, stroke);
 
-  return `<svg id="${id}" viewbox="0 0 30 30" width="${zoomSize}" height="${zoomSize}" x="${viewX}" y="${viewY}"><g>${pinHTML}</g><text x="${dx}%" y="${dy}%" font-size="${px}px" >${icon}</text></svg>`;
+  return `<svg id="${id}" viewbox="0 0 30 30" width="${zoomSize}" height="${zoomSize}" x="${viewX}" y="${viewY}"><g>${pinHTML}</g>${icon}</svg>`;
 }
 
 function toggleLabels(event) {
