@@ -5,17 +5,18 @@ function editWorld() {
     title: "Configure World",
     resizable: false,
     width: "minmax(40em, 85vw)",
-    buttons: {"Update world": updateWorld},
+    buttons: {
+      "Whole World": () => applyWorldPreset(100, 50),
+      Northern: () => applyWorldPreset(33, 25),
+      Tropical: () => applyWorldPreset(33, 50),
+      Southern: () => applyWorldPreset(33, 75)
+    },
     open: function () {
-      const checkbox = /* html */ `<div class="dontAsk" data-tip="Automatically update world on input changes and button clicks">
-        <input id="wcAutoChange" class="checkbox" type="checkbox" checked />
-        <label for="wcAutoChange" class="checkbox-label"><i>auto-apply changes</i></label>
-      </div>`;
-      const pane = this.parentElement.querySelector(".ui-dialog-buttonpane");
-      pane.insertAdjacentHTML("afterbegin", checkbox);
-
-      const button = this.parentElement.querySelector(".ui-dialog-buttonset > button");
-      button.on("mousemove", () => tip("Apply curreny settings to the map"));
+      const buttons = $(this).dialog("widget").find(".ui-dialog-buttonset > button");
+      buttons[0].addEventListener("mousemove", () => tip("Click to set map size to cover the whole World"));
+      buttons[1].addEventListener("mousemove", () => tip("Click to set map size to cover the Northern latitudes"));
+      buttons[2].addEventListener("mousemove", () => tip("Click to set map size to cover the Tropical latitudes"));
+      buttons[3].addEventListener("mousemove", () => tip("Click to set map size to cover the Southern latitudes"));
     },
     close: function () {
       $(this).dialog("destroy");
@@ -33,16 +34,12 @@ function editWorld() {
   if (modules.editWorld) return;
   modules.editWorld = true;
 
-  globe.select("#globeWindArrows").on("click", handleWindChange);
+  byId("worldControls").addEventListener("input", e => updateWorld(e.target));
+  globe.select("#globeWindArrows").on("click", changeWind);
   globe.select("#globeGraticule").attr("d", round(path(d3.geoGraticule()()))); // globe graticule
   updateWindDirections();
 
-  byId("worldControls").on("input", handleControlsChange);
-  byId("restoreWinds").on("click", restoreDefaultWinds);
-  byId("wcWholeWorld").on("click", () => applyWorldPreset(100, 50));
-  byId("wcNorthern").on("click", () => applyWorldPreset(33, 25));
-  byId("wcTropical").on("click", () => applyWorldPreset(33, 50));
-  byId("wcSouthern").on("click", () => applyWorldPreset(33, 75));
+  byId("restoreWinds").addEventListener("click", restoreDefaultWinds);
 
   function updateInputValues() {
     byId("temperatureEquatorInput").value = options.temperatureEquator;
@@ -58,27 +55,27 @@ function editWorld() {
     byId("temperatureSouthPoleF").innerText = convertTemperature(options.temperatureSouthPole, "°F");
   }
 
-  function handleControlsChange({target}) {
-    const stored = target.dataset.stored;
-    byId(stored + "Input").value = target.value;
-    byId(stored + "Output").value = target.value;
-    lock(stored);
+  function updateWorld(el) {
+    if (el?.dataset.stored) {
+      const stored = el.dataset.stored;
+      byId(stored + "Input").value = el.value;
+      byId(stored + "Output").value = el.value;
+      lock(el.dataset.stored);
 
-    if (stored === "temperatureEquator") {
-      options.temperatureEquator = Number(target.value);
-      byId("temperatureEquatorF").innerText = convertTemperature(options.temperatureEquator, "°F");
-    } else if (stored === "temperatureNorthPole") {
-      options.temperatureNorthPole = Number(target.value);
-      byId("temperatureNorthPoleF").innerText = convertTemperature(options.temperatureNorthPole, "°F");
-    } else if (stored === "temperatureSouthPole") {
-      options.temperatureSouthPole = Number(target.value);
-      byId("temperatureSouthPoleF").innerText = convertTemperature(options.temperatureSouthPole, "°F");
+      if (stored === "temperatureEquator") {
+        options.temperatureEquator = Number(el.value);
+        byId("temperatureEquatorF").innerText = convertTemperature(options.temperatureEquator, "°F");
+      }
+      if (stored === "temperatureNorthPole") {
+        options.temperatureNorthPole = Number(el.value);
+        byId("temperatureNorthPoleF").innerText = convertTemperature(options.temperatureNorthPole, "°F");
+      }
+      if (stored === "temperatureSouthPole") {
+        options.temperatureSouthPole = Number(el.value);
+        byId("temperatureSouthPoleF").innerText = convertTemperature(options.temperatureSouthPole, "°F");
+      }
     }
 
-    if (byId("wcAutoChange").checked) updateWorld();
-  }
-
-  function updateWorld() {
     updateGlobeTemperature();
     updateGlobePosition();
     calculateTemperatures();
@@ -133,7 +130,6 @@ function editWorld() {
       [mc.lonW, mc.latN],
       [mc.lonE, mc.latS]
     ]);
-
     globe.select("#globeArea").attr("d", round(path(area.outline()))); // map area
   }
 
@@ -167,22 +163,21 @@ function editWorld() {
       });
   }
 
-  function handleWindChange() {
+  function changeWind() {
     const arrow = d3.event.target.nextElementSibling;
     const tier = +arrow.dataset.tier;
     options.winds[tier] = (options.winds[tier] + 45) % 360;
     const tr = parseTransform(arrow.getAttribute("transform"));
     arrow.setAttribute("transform", `rotate(${options.winds[tier]} ${tr[1]} ${tr[2]})`);
     localStorage.setItem("winds", options.winds);
-
     const mapTiers = d3.range(mapCoordinates.latN, mapCoordinates.latS, -30).map(c => ((90 - c) / 30) | 0);
-    if (byId("wcAutoChange").checked && mapTiers.includes(tier)) updateWorld();
+    if (mapTiers.includes(tier)) updateWorld();
   }
 
   function restoreDefaultWinds() {
     const defaultWinds = [225, 45, 225, 315, 135, 315];
     const mapTiers = d3.range(mapCoordinates.latN, mapCoordinates.latS, -30).map(c => ((90 - c) / 30) | 0);
-    const update = byId("wcAutoChange").checked && mapTiers.some(t => options.winds[t] != defaultWinds[t]);
+    const update = mapTiers.some(t => options.winds[t] != defaultWinds[t]);
     options.winds = defaultWinds;
     updateWindDirections();
     if (update) updateWorld();
@@ -193,6 +188,6 @@ function editWorld() {
     byId("latitudeInput").value = byId("latitudeOutput").value = lat;
     lock("mapSize");
     lock("latitude");
-    if (byId("wcAutoChange").checked) updateWorld();
+    updateWorld();
   }
 }

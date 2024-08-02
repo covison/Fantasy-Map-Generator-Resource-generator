@@ -1,5 +1,232 @@
-.vscode
-.idea
-/node_modules
-/dist
-/coverage
+      {
+        type: "Gold Mine",
+        icon: `
+          <svg fill="#FCDC5A" width="20" height="24" viewBox="0 0 32 32" x="5" y="2.4" version="1.1" xmlns="http://www.w3.org/2000/svg">
+            <title>gold-bar</title>
+            <path d="M11.652 19.245l-0.001-0.001-0.005-0.003zM30.671 16.098l-2.207-5.839-8.022-4.361-16.624 8.861-2.431 6.495 9.8 5.214 0.161-7.067-7.624-4.353 0.654 0.346-0.373-0.215 1.332 0.708-1.212-0.708 7.526 4.065 16.205-8.376-2.594 1.424 3.037-1.551-6.011 3.183-10.434 5.727-0.668 6.816 19.484-10.371zM11.976 17.206l-4.389-2.342 4.269 1.32 13.070-5.8-12.95 6.822z"></path>
+          </svg>`,
+        min: 10,
+        each: 500,
+        multiplier: 1,
+        list: listVolcanoes,
+        add: addVolcano
+      },
+      {
+        type: "Silver Mine",
+        icon: `
+          <svg fill="#C0C0C0" width="20" height="24" viewBox="0 0 32 32" x="5" y="2.4" version="1.1" xmlns="http://www.w3.org/2000/svg">
+            <title>gold-bar</title>
+            <path d="M11.652 19.245l-0.001-0.001-0.005-0.003zM30.671 16.098l-2.207-5.839-8.022-4.361-16.624 8.861-2.431 6.495 9.8 5.214 0.161-7.067-7.624-4.353 0.654 0.346-0.373-0.215 1.332 0.708-1.212-0.708 7.526 4.065 16.205-8.376-2.594 1.424 3.037-1.551-6.011 3.183-10.434 5.727-0.668 6.816 19.484-10.371zM11.976 17.206l-4.389-2.342 4.269 1.32 13.070-5.8-12.95 6.822z"></path>
+          </svg>`,
+        min: 10,
+        each: 500,
+        multiplier: 1,
+        list: listVolcanoes,
+        add: addVolcano
+      },
+      {
+        type: "Iron Mine",
+        icon: `
+          <svg fill="#4e4f55" width="20" height="24" viewBox="0 0 32 32" x="5" y="2.4" version="1.1" xmlns="http://www.w3.org/2000/svg">
+            <title>gold-bar</title>
+            <path d="M11.652 19.245l-0.001-0.001-0.005-0.003zM30.671 16.098l-2.207-5.839-8.022-4.361-16.624 8.861-2.431 6.495 9.8 5.214 0.161-7.067-7.624-4.353 0.654 0.346-0.373-0.215 1.332 0.708-1.212-0.708 7.526 4.065 16.205-8.376-2.594 1.424 3.037-1.551-6.011 3.183-10.434 5.727-0.668 6.816 19.484-10.371zM11.976 17.206l-4.389-2.342 4.269 1.32 13.070-5.8-12.95 6.822z"></path>
+          </svg>`,
+        min: 10,
+        each: 500,
+        multiplier: 1,
+        list: listVolcanoes,
+        add: addVolcano
+      },
+      {
+        type: "Copper Mine",
+        icon: `
+          <svg fill="#B87333" width="20" height="24" viewBox="0 0 32 32" x="5" y="2.4" version="1.1" xmlns="http://www.w3.org/2000/svg">
+            <title>gold-bar</title>
+            <path d="M11.652 19.245l-0.001-0.001-0.005-0.003zM30.671 16.098l-2.207-5.839-8.022-4.361-16.624 8.861-2.431 6.495 9.8 5.214 0.161-7.067-7.624-4.353 0.654 0.346-0.373-0.215 1.332 0.708-1.212-0.708 7.526 4.065 16.205-8.376-2.594 1.424 3.037-1.551-6.011 3.183-10.434 5.727-0.668 6.816 19.484-10.371zM11.976 17.206l-4.389-2.342 4.269 1.32 13.070-5.8-12.95 6.822z"></path>
+          </svg>`,
+        min: 10,
+        each: 500,
+        multiplier: 1,
+        list: listVolcanoes,
+        add: addVolcano
+      },
+      {
+        type: "Wheat",
+        icon: `<svg fill="#d4af37" width="20" height="24" viewBox="0 0 32 32" x="5" y="2.4" version="1.1" xmlns="http://www.w3.org/2000/svg"><title>wheat</title><path d="wheat-svg-path"></path></svg>`,
+        min: 10,
+        each: 500,
+        multiplier: 1,
+        list: listWheat,
+        add: addWheat
+      },
+      {
+        type: "Salt Mine",
+        icon: `<svg fill="#ffffff" width="20" height="24" viewBox="0 0 32 32" x="5" y="2.4" version="1.1" xmlns="http://www.w3.org/2000/svg"><title>salt</title><path d="salt-svg-path"></path></svg>`,
+        min: 20,
+        each: 500,
+        multiplier: 1,
+        list: listSalt,
+        add: addSalt
+      },
+      {
+        type: "Olive Grove",
+        icon: `<svg fill="#556b2f" width="20" height="24" viewBox="0 0 32 32" x="5" y="2.4" version="1.1" xmlns="http://www.w3.org/2000/svg"><title>olive</title><path d="olive-svg-path"></path></svg>`,
+        min: 24,
+        each: 500,
+        multiplier: 1,
+        list: listOlives,
+        add: addOlives
+      },
+      {
+        type: "Honey Farm",
+        icon: `<svg fill="#ffb700" width="20" height="24" viewBox="0 0 32 32" x="5" y="2.4" version="1.1" xmlns="http://www.w3.org/2000/svg"><title>honey</title><path d="honey-svg-path"></path></svg>`,
+        min: 20,
+        each: 500,
+        multiplier: 1,
+        list: listHoney,
+        add: addHoney
+      },
+      {
+        type: "Wool Farm",
+        icon: `<svg fill="#d8bfd8" width="20" height="24" viewBox="0 0 32 32" x="5" y="2.4" version="1.1" xmlns="http://www.w3.org/2000/svg"><title>wool</title><path d="wool-svg-path"></path></svg>`,
+        min: 25,
+        each: 500,
+        multiplier: 1,
+        list: listWool,
+        add: addWool
+      },
+      {
+        type: "Bean Farm",
+        icon: `<svg fill="#8fbc8f" width="20" height="24" viewBox="0 0 32 32" x="5" y="2.4" version="1.1" xmlns="http://www.w3.org/2000/svg"><title>bean</title><path d="bean-svg-path"></path></svg>`,
+        min: 22,
+        each: 500,
+        multiplier: 1,
+        list: listBeans,
+        add: addBeans
+      },
+      {
+        type: "Rice Paddy",
+        icon: `<svg fill="#a1c935" width="20" height="24" viewBox="0 0 32 32" x="5" y="2.4" version="1.1" xmlns="http://www.w3.org/2000/svg"><title>rice</title><path d="rice-svg-path"></path></svg>`,
+        min: 20,
+        each: 500,
+        multiplier: 1,
+        list: listRice,
+        add: addRice
+      },
+      {
+        type: "Timber Forest",
+        icon: `<svg fill="#8b4513" width="20" height="24" viewBox="0 0 32 32" x="5" y="2.4" version="1.1" xmlns="http://www.w3.org/2000/svg"><title>timber</title><path d="timber-svg-path"></path></svg>`,
+        min: 65,
+        each: 500,
+        multiplier: 1,
+        list: listTimber,
+        add: addTimber
+      },
+      {
+        type: "Cattle Farm",
+        icon: `<svg fill="#a52a2a" width="20" height="24" viewBox="0 0 32 32" x="5" y="2.4" version="1.1" xmlns="http://www.w3.org/2000/svg"><title>cattle</title><path d="cattle-svg-path"></path></svg>`,
+        min: 25,
+        each: 500,
+        multiplier: 1,
+        list: listCattle,
+        add: addCattle
+      },
+      {
+        type: "Sheep Farm",
+        icon: `<svg fill="#f0e68c" width="20" height="24" viewBox="0 0 32 32" x="5" y="2.4" version="1.1" xmlns="http://www.w3.org/2000/svg"><title>sheep</title><path d="sheep-svg-path"></path></svg>`,
+        min: 20,
+        each: 500,
+        multiplier: 1,
+        list: listSheep,
+        add: addSheep
+      },
+      {
+        type: "Pig Farm",
+        icon: `<svg fill="#ff69b4" width="20" height="24" viewBox="0 0 32 32" x="5" y="2.4" version="1.1" xmlns="http://www.w3.org/2000/svg"><title>pig</title><path d="pig-svg-path"></path></svg>`,
+        min: 20,
+        each: 500,
+        multiplier: 1,
+        list: listPigs,
+        add: addPigs
+      },
+      {
+        type: "Fur Source",
+        icon: `<svg fill="#8b0000" width="20" height="24" viewBox="0 0 32 32" x="5" y="2.4" version="1.1" xmlns="http://www.w3.org/2000/svg"><title>fur</title><path d="fur-svg-path"></path></svg>`,
+        min: 15,
+        each: 500,
+        multiplier: 1,
+        list: listFurs,
+        add: addFurs
+      },
+      {
+        type: "Fishing Spot",
+        icon: `<svg fill="#1e90ff" width="20" height="24" viewBox="0 0 32 32" x="5" y="2.4" version="1.1" xmlns="http://www.w3.org/2000/svg"><title>fish</title><path d="fish-svg-path"></path></svg>`,
+        min: 40,
+        each: 500,
+        multiplier: 1,
+        list: listFish,
+        add: addFish
+      },
+      {
+        type: "Leather Source",
+        icon: `<svg fill="#deb887" width="20" height="24" viewBox="0 0 32 32" x="5" y="2.4" version="1.1" xmlns="http://www.w3.org/2000/svg"><title>leather</title><path d="leather-svg-path"></path></svg>`,
+        min: 18,
+        each: 500,
+        multiplier: 1,
+        list: listLeather,
+        add: addLeather
+      },
+      {
+        type: "Limestone Quarry",
+        icon: `<svg fill="#d3d3d3" width="20" height="24" viewBox="0 0 32 32" x="5" y="2.4" version="1.1" xmlns="http://www.w3.org/2000/svg"><title>limestone</title><path d="limestone-svg-path"></path></svg>`,
+        min: 9,
+        each: 500,
+        multiplier: 1,
+        list: listLimestone,
+        add: addLimestone
+      },
+      {
+        type: "Marble Quarry",
+        icon: `<svg fill="#e5e4e2" width="20" height="24" viewBox="0 0 32 32" x="5" y="2.4" version="1.1" xmlns="http://www.w3.org/2000/svg"><title>marble</title><path d="marble-svg-path"></path></svg>`,
+        min: 6,
+        each: 500,
+        multiplier: 1,
+        list: listMarble,
+        add: addMarble
+      },
+      {
+        type: "Herb Source",
+        icon: `<svg fill="#228b22" width="20" height="24" viewBox="0 0 32 32" x="5" y="2.4" version="1.1" xmlns="http://www.w3.org/2000/svg"><title>herbs</title><path d="herbs-svg-path"></path></svg>`,
+        min: 20,
+        each: 500,
+        multiplier: 1,
+        list: listHerbs,
+        add: addHerbs
+      },
+      {
+        type: "Beeswax Source",
+        icon: `<svg fill="#ffd700" width="20" height="24" viewBox="0 0 32 32" x="5" y="2.4" version="1.1" xmlns="http://www.w3.org/2000/svg"><title>beeswax</title><path d="beeswax-svg-path"></path></svg>`,
+        min: 15,
+        each: 500,
+        multiplier: 1,
+        list: listBeeswax,
+        add: addBeeswax
+      },
+      {
+        type: "Spice Source",
+        icon: `<svg fill="#8b0000" width="20" height="24" viewBox="0 0 32 32" x="5" y="2.4" version="1.1" xmlns="http://www.w3.org/2000/svg"><title>spices</title><path d="spices-svg-path"></path></svg>`,
+        min: 4,
+        each: 500,
+        multiplier: 1,
+        list: listSpices,
+        add: addSpices
+      },
+      {
+        type: "Clay Pit",
+        icon: `<svg fill="#a0522d" width="20" height="24" viewBox="0 0 32 32" x="5" y="2.4" version="1.1" xmlns="http://www.w3.org/2000/svg"><title>clay</title><path d="clay-svg-path"></path></svg>`,
+        min: 20,
+        each: 500,
+        multiplier: 1,
+        list: listClay,
+        add: addClay
+      }
