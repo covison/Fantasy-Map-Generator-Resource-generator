@@ -4,7 +4,7 @@ window.Markers = (function () {
   let config = getDefaultConfig();
   let occupied = [];
 
-  function getDefaultConfig() {
+  {
     const culturesSet = document.getElementById("culturesSet").value;
     const isFantasy = culturesSet.includes("Fantasy");
 
